@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import styles from "./dashboard.module.scss";
-import * as MdIcons from "react-icons/md";
+import * as BsIcons from "react-icons/bs";
 import { IsLoadingObject } from "../../context/LoaderContext";
 
 const Dashboard = () => {
-  const { setIsLoading } = IsLoadingObject();
-  const [loading, setLoading] = useState(true);
+  // const { setIsLoading } = IsLoadingObject();
+  // const [loading, setLoading] = useState(true);
 
   // useEffect(() => {
   //   setIsLoading(true);
@@ -18,58 +18,29 @@ const Dashboard = () => {
 
   const [sidebar, setSidebar] = useState(false);
   return (
-    <div>
-      <div className={styles.dashboardParentDiv}>
-        <Navbar sidebar={sidebar} setSidebar={setSidebar} />
-        <div
-          className={`${styles.dashboardContentDiv} ${
-            sidebar && styles.active
-          } `}
-        >
-          <div className={styles.inventoryParent}>
-            <div className={styles.inventoryContainer}>
-              <h3>Dashboard</h3>
-              <h5>Inventory List</h5>
-              <div className={styles.inventoryListItems}>
-                <div>Lorem ipsum dolo</div>
-                <div>5</div>
+    <div className={styles.dashboardParentDiv}>
+      <Navbar sidebar={sidebar} setSidebar={setSidebar} />
+      <div
+        className={`${styles.dashboardContentDiv} ${sidebar && styles.active} `}
+      >
+        <div className={styles.dashboardPageDiv}>
+          <div className={styles.dashboardMenu}>
+            <div className={styles.dashboardText}>
+              <h4>DASHBOARD</h4>
+            </div>
+            <div className={styles.searchBarParentContainer}>
+              <div className={styles.searchBarCont}>
+                <BsIcons.BsSearch className={styles.searchBarIcon} />
+                <input type="text" placeholder="Keywords" />
+                <button>
+                  <BsIcons.BsSearch className={styles.searchBarIcon2} />
+                </button>
               </div>
             </div>
           </div>
-          <div className={styles.dataParent}>
-            <div className={styles.dataContainer}>
-              <div className={styles.formIcon}>
-                <MdIcons.MdOutlineInventory />
-              </div>
-              <span>Upload Patient Data</span>
-              <form>
-                <div className={styles.formGroup}>
-                  <input
-                    type="text"
-                    className={styles.formControl}
-                    required
-                    placeholder="Full Name"
-                  />
-                </div>
-                <div className={styles.formGroup}>
-                  <input
-                    type="text"
-                    className={styles.formControl}
-                    required
-                    placeholder="Card No"
-                  />
-                </div>
-                <div className={styles.formGroup}>
-                  <input
-                    type="text"
-                    className={styles.formControl}
-                    required
-                    placeholder="Phone Number"
-                  />
-                </div>
-                <button>Submit</button>
-              </form>
-            </div>
+          <div className={styles.dashboardSection}>
+            <div className={styles.filterParentDiv}>first</div>
+            <div className={styles.tableParentDiv}>second</div>
           </div>
         </div>
       </div>

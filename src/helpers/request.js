@@ -167,3 +167,64 @@ Request.prototype.deleteUserAccount = async function (token) {
     };
   }
 };
+
+Request.prototype.terminateSession = async function (token) {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const request = await fetch(this.path, config);
+    const response = await request.json();
+    if (request.status !== 200) {
+      return {
+        status: false,
+        ...response,
+      };
+    }
+    return {
+      status: true,
+      ...response,
+    };
+  } catch (error) {
+    return {
+      status: false,
+      error,
+    };
+  }
+};
+
+Request.prototype.deleteUserAvatar = async function (token) {
+  const config = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const request = await fetch(this.path, config);
+    const response = await request.json();
+    if (request.status !== 200) {
+      return {
+        status: false,
+        ...response,
+      };
+    }
+    const profileData = response.data;
+    let userProfile = JSON.stringify(profileData);
+    sessionStorage.setItem("userProfile", userProfile);
+    return {
+      status: true,
+      ...response,
+    };
+  } catch (error) {
+    return {
+      status: false,
+      error,
+    };
+  }
+};

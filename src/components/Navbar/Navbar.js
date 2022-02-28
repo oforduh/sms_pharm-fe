@@ -66,14 +66,14 @@ const Navbar = ({ sidebar, setSidebar }) => {
   return (
     <>
       <div className={`${styles.navbar}`}>
-        <Link to="#" className={!menubars ? styles.hidden : styles.menuBars}>
-          <FaIcons.FaBars
-            onClick={() => {
-              showSidebar();
-              hideMenuBar();
-            }}
-          />
-        </Link>
+      <Link to="#" className={!menubars ? styles.hidden : styles.menuBars}>
+      <FaIcons.FaBars
+        onClick={() => {
+          showSidebar();
+          hideMenuBar();
+        }}
+      />
+    </Link>
       </div>
       <nav
         className={

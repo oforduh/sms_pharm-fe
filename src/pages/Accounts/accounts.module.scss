@@ -23,6 +23,16 @@
   color: var(--primary);
   margin-bottom: 15px;
 }
+.deletingAvatarMessage {
+  display: block;
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+.terminatingSessionMessage {
+  display: block;
+  color: var(--primary);
+  margin-bottom: 15px;
+}
 
 .accountParentDiv {
   .hide {
@@ -179,6 +189,7 @@
         }
       }
     }
+
     // password section styling starts here
     .passwordParentDiv {
       width: 100%;

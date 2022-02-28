@@ -53,13 +53,17 @@ export const UserProvider = ({ children }) => {
     { refreshInterval: 60000 }
   );
 
-  data?.json().then((res) => {
-    if (res.data >= -5) {
-      toast.warn(
-        `session would expire in ${Math.floor(Math.abs(res.data))} minutes `
-      );
-    }
-  });
+  if (error) {
+    console.log(error);
+  } else {
+    data?.json().then((res) => {
+      if (res.data >= -5) {
+        toast.warn(
+          `session would expire in ${Math.floor(Math.abs(res.data))} minutes `
+        );
+      }
+    });
+  }
 
   //step 3
   return (

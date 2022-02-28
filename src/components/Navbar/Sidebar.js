@@ -18,7 +18,7 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
-    title: "Upload Patient Data",
+    title: "Patient List",
     path: "/patient/data",
     icon: <CgIcons.CgDatabase />,
     cName: "nav-text",
@@ -31,12 +31,12 @@ export const SidebarData = [
   },
   {
     title: "Inventory List",
-    path: "/list",
+    path: "/Inventory list",
     icon: <MdIcons.MdOutlineInventory />,
     cName: "nav-text",
   },
   {
-    title: "Accounts",
+    title: "My Account",
     path: "/account",
     icon: <MdIcons.MdManageAccounts />,
     cName: "nav-text",

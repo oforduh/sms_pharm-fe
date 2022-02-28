@@ -6,12 +6,15 @@ import * as FiIcons from "react-icons/fi";
 import * as AiIcons from "react-icons/ai";
 import { toast } from "react-toastify";
 import MLoader from "./miniLoader/mLoader.js";
-
+import { handleImg, deleteImgPreview } from "../../helpers/imagePreview.js";
 import dummyImage from "./user.png";
+
 import {
   handleUpdateUserProfile,
   handleUpdateUserPassword,
   handleDeleteUserAccount,
+  handleDeleteUserAvatar,
+  handleTerminateSession,
 } from "./handleUpdateUserProfile.js";
 
 // To format Date
@@ -45,27 +48,8 @@ const Account = () => {
     alt: "Upload an Image",
   });
 
-  // This function set an image preview and saves the image in a state
+  // state to hold the file
   const [imageFile, setimageFile] = useState(null);
-  const handleImg = (e) => {
-    if (e.target.files[0]) {
-      setImg({
-        src: URL.createObjectURL(e.target.files[0]),
-        alt: e.target.files[0].name,
-      });
-      setHideIcon(false);
-      setimageFile(e.target.files[0]);
-    }
-  };
-
-  // This functionality delete image preview
-  const deleteImgPreview = () => {
-    setImg({
-      src: user.avatar ? user.avatar : dummyImage,
-      alt: "Upload an Image",
-    });
-    setHideIcon(true);
-  };
 
   // set up the initial value
   const [fName, setFName] = useState("");
@@ -76,6 +60,11 @@ const Account = () => {
   const [updatingMessagePassword, setUpdatingMessagePassword] = useState(false);
   const [updatingMessageRemoveAccount, setupdatingMessageRemoveAccount] =
     useState(false);
+  const [updatingMessageDeleteUser, setUpdatingMessageDeleteUser] =
+    useState(false);
+  const [terminatingSessionMessage, setTerminatingSessionMessage] =
+    useState(false);
+
   const [hideIcon, setHideIcon] = useState(true);
   const [old_password, setOld_password] = useState("");
   const [new_password, setNew_password] = useState("");
@@ -87,6 +76,7 @@ const Account = () => {
   });
 
   // This functionality hides and show password
+
   // const togglePassword = () => {
   //   if (passwordType === "password") {
   //     setPasswordType("text");
@@ -141,18 +131,35 @@ const Account = () => {
                         {!hideIcon ? (
                           <button
                             className={`${styles.iconUploader} ${styles.deleteImagePreview} ${styles.hide}`}
-                            onClick={deleteImgPreview}
+                            onClick={() => {
+                              deleteImgPreview({ setImg, setHideIcon, user });
+                            }}
+                            style={{
+                              opacity: updatingMessageProfile && 0.5,
+                            }}
                           >
                             <AiIcons.AiTwotoneDelete />
                           </button>
                         ) : (
-                          <label className={styles.iconUploader}>
+                          <label
+                            className={styles.iconUploader}
+                            style={{
+                              opacity: updatingMessageProfile && 0.5,
+                            }}
+                          >
                             <FiIcons.FiEdit2 />
                             <input
                               type="file"
                               accept="image/*"
                               className={styles.hide}
-                              onChange={handleImg}
+                              onChange={(e) => {
+                                handleImg({
+                                  e,
+                                  setImg,
+                                  setHideIcon,
+                                  setimageFile,
+                                });
+                              }}
                             />
                           </label>
                         )}
@@ -250,6 +257,42 @@ const Account = () => {
                     </form>
                   </div>
                 </div>
+                <div className={styles.dummySpace}></div>
+              </div>
+            </div>
+            <div className={styles.closeAccountParentDiv}>
+              <div className={styles.closeAccountContentDiv}>
+                <div>
+                  <div className={styles.sectionHeader}>
+                    <span>Avatar</span>
+                  </div>
+                  <p className={styles.textCustomizer}>
+                    <span>warning:</span> Deleting your account avatar is
+                    irreversible
+                  </p>
+                </div>
+
+                <div>
+                  {updatingMessageDeleteUser && (
+                    <small className={styles.deletingAvatarMessage}>
+                      Deleting Avatar...
+                    </small>
+                  )}
+                  <button
+                    onClick={() =>
+                      handleDeleteUserAvatar({
+                        token,
+                        setUpdatingMessageDeleteUser,
+                        setErrorMessage,
+                        setSuccessMessage,
+                      })
+                    }
+                    style={{ opacity: updatingMessageDeleteUser && 0.5 }}
+                  >
+                    Remove avatar
+                  </button>
+                </div>
+
                 <div className={styles.dummySpace}></div>
               </div>
             </div>
@@ -386,9 +429,9 @@ const Account = () => {
             <div className={styles.closeAccountParentDiv}>
               <div className={styles.closeAccountContentDiv}>
                 <div>
-                  <div className={styles.sectionHeader}> Delete Account </div>
+                  <span>Delete Account</span>
                   <p className={styles.textCustomizer}>
-                    <span>Warning:</span> Deleting your account is irreversible.
+                    <span>warning:</span> Deleting your account is irreversible.
                   </p>
                 </div>
 
@@ -405,6 +448,35 @@ const Account = () => {
                     style={{ opacity: updatingMessageRemoveAccount && 0.5 }}
                   >
                     Close this account
+                  </button>
+                </div>
+                <div>
+                  <div>
+                   <span>Terminate other session</span> 
+                  </div>
+                  <p className={styles.textCustomizer}>
+                    Logs out session on all other connected devices
+                  </p>
+                </div>
+
+                <div>
+                  {terminatingSessionMessage && (
+                    <small className={styles.terminatingSessionMessage}>
+                      Terminating...
+                    </small>
+                  )}
+                  <button
+                    onClick={() =>
+                      handleTerminateSession({
+                        token,
+                        setTerminatingSessionMessage,
+                        setErrorMessage,
+                        setSuccessMessage,
+                      })
+                    }
+                    style={{ opacity: terminatingSessionMessage && 0.5 }}
+                  >
+                    terminate
                   </button>
                 </div>
                 <div>
