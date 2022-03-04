@@ -54,6 +54,9 @@ export const UserProvider = ({ children }) => {
   );
 
   if (error) {
+    setTimeout(() => {
+      window.location.replace("/login");
+    }, 31000);
     console.log(error);
   } else {
     data?.json().then((res) => {

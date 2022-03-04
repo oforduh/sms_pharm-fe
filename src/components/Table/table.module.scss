@@ -1,0 +1,51 @@
+.container {
+  flex-grow: 1;
+  background-color: #fff;
+
+  table {
+    width: 100%;
+
+    thead,
+    tbody {
+      display: block;
+
+      tr {
+        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        height: 50px;
+
+        th {
+          font-size: 14px;
+          color: var(--primary) !important;
+          text-decoration: none !important;
+        }
+
+        td { 
+          font-size: 12px;
+
+          img {
+            width: 18px;
+            margin-left: 10px;
+            cursor: pointer;
+          }
+        }
+
+        th,
+        td {
+          display: flex;
+          justify-content: flex-start;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        &:nth-child(odd) {
+          background-color: #f5f5f5;
+        }
+      }
+    }
+  }
+}

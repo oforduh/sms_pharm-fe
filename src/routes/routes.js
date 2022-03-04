@@ -27,6 +27,11 @@ const routes = [
     type: "authenticated",
   },
   {
+    path: "/activity",
+    element: <pages.Activity />,
+    type: "authenticated",
+  },
+  {
     path: "/login",
     element: <pages.Login />,
     type: "protected",

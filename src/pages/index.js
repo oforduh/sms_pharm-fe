@@ -3,6 +3,7 @@ import Accounts from "./Accounts/Account";
 import Dashboard from "./Dashboard/Dashboard";
 import PatientData from "./PatientData/PatientData";
 import Prescription from "./Prescription/Prescription";
+import Activity from "./Activity/Activity";
 
 const pages = {
   Login,
@@ -10,6 +11,7 @@ const pages = {
   Dashboard,
   PatientData,
   Prescription,
+  Activity,
 };
 
 export default pages;

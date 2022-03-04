@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { UserObject } from "../../context/User.js";
 import { handleLogOut } from "./handleLogOut.js";
 import styles from "./navbar.module.scss";
-import Avatar from "react-avatar";
 import { toast } from "react-toastify";
 import * as FaIcons from "react-icons/fa";
 import { NavLink, Link } from "react-router-dom";
@@ -66,14 +65,14 @@ const Navbar = ({ sidebar, setSidebar }) => {
   return (
     <>
       <div className={`${styles.navbar}`}>
-      <Link to="#" className={!menubars ? styles.hidden : styles.menuBars}>
-      <FaIcons.FaBars
-        onClick={() => {
-          showSidebar();
-          hideMenuBar();
-        }}
-      />
-    </Link>
+        <Link to="#" className={!menubars ? styles.hidden : styles.menuBars}>
+          <FaIcons.FaBars
+            onClick={() => {
+              showSidebar();
+              hideMenuBar();
+            }}
+          />
+        </Link>
       </div>
       <nav
         className={

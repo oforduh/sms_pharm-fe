@@ -30,9 +30,9 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
-    title: "Inventory List",
-    path: "/Inventory list",
-    icon: <MdIcons.MdOutlineInventory />,
+    title: "Activities",
+    path: "/activity",
+    icon: <FaIcons.FaBell />,
     cName: "nav-text",
   },
   {

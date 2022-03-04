@@ -228,3 +228,31 @@ Request.prototype.deleteUserAvatar = async function (token) {
     };
   }
 };
+
+Request.prototype.getAllActivity = async function (token) {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const request = await fetch(this.path, config);
+    const response = await request.json();
+    if (request.status !== 200) {
+      return {
+        status: false,
+        ...response,
+      };
+    }
+    return {
+      status: true,
+      ...response,
+    };
+  } catch (error) {
+    return {
+      status: false,
+      error,
+    };
+  }
+};
