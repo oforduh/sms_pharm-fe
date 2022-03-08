@@ -229,7 +229,11 @@ Request.prototype.deleteUserAvatar = async function (token) {
   }
 };
 
-Request.prototype.getAllActivity = async function (token) {
+Request.prototype.getAllActivity = async function (
+  token,
+  page = 1,
+  limit = 10
+) {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -237,7 +241,10 @@ Request.prototype.getAllActivity = async function (token) {
   };
 
   try {
-    const request = await fetch(this.path, config);
+    const request = await fetch(
+      `${this.path}?limit=${limit}&page=${page}`,
+      config
+    );
     const response = await request.json();
     if (request.status !== 200) {
       return {

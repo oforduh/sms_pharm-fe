@@ -13,9 +13,17 @@
   border-radius: 10px;
 }
 
+.paginationDiv {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  bottom: 0;
+}
+
 .activityParentDiv {
   min-height: 100vh;
-  background-color: #7cc3c1;
+  background-color: var(--primary);
+
   position: relative;
 
   .activityContentDiv {
@@ -27,11 +35,11 @@
     right: 1%;
     bottom: 1.5%;
     transition: 300ms;
-    height: 97vh;
+    height: 97%;
     display: flex;
     background-color: var(--dashboardColor);
     scroll-behavior: smooth;
-    overflow: scroll;
+    // overflow: scroll;
     .active {
       width: 92%;
       transition: 300ms;
@@ -41,11 +49,12 @@
       overflow: scroll;
       width: 100%;
       height: 100%;
+      // border: 2px solid red;
       .activityMenu {
         border-bottom: 0.2px solid var(--grey);
         padding: 0 20px;
         width: 100%;
-        height: 10vh;
+        height: 10%;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -93,13 +102,23 @@
         }
       }
       .activityTableParentDiv {
-        margin-top: 20px;
+        box-sizing: border-box;
+        margin-top: 30px;
+        // border: 2px solid red;
         width: 100%;
         display: flex;
         justify-content: center;
-        min-height: 100%;
+        min-height: 90%;
+
         .activityTableCont {
           width: 90%;
+          min-height: 70%;
+          // border: 2px solid red;
+
+          .loaderContainer {
+            height: 75vh;
+            position: relative;
+          }
         }
       }
     }

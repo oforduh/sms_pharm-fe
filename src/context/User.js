@@ -33,6 +33,7 @@ export const UserProvider = ({ children }) => {
       time = time / 60000;
       if (time >= 0) {
         toast.error("Session has Expired");
+        window.location.replace("/login");
         sessionStorage.clear();
         setUser(null);
         setToken(null);

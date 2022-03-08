@@ -5,26 +5,35 @@ export const handleGetActivity = async function ({
   token,
   setErrorMessage,
   setSuccessMessage,
-  setMiniLoader,
+  setloadingPage,
+  setloadingTable,
   setActivityData,
+  setTotalPages,
+  setPageIndex,
+  page,
 }) {
-  setMiniLoader(true);
   setErrorMessage(false);
   setSuccessMessage(false);
+  setloadingTable(true);
+  if (!page) setloadingPage(true);
 
   try {
     const request = new Request("activity");
-    const getAllActivity = await request.getAllActivity(token);
-    setMiniLoader(false);
+    const getAllActivity = await request.getAllActivity(token, page);
+
     if (!getAllActivity.status) {
       setErrorMessage(getAllActivity.message);
       setSuccessMessage(false);
+      setloadingPage(false);
+      return;
     }
-    if (getAllActivity.status) {
-      setErrorMessage(false);
-      setSuccessMessage("Fetched activity logs");
-      setActivityData(getAllActivity.data);
-    }
+
+    setErrorMessage(false);
+    setloadingPage(false);
+    setloadingTable(false);
+    setTotalPages(getAllActivity.totalPages);
+    setPageIndex(getAllActivity.currentPage);
+    setActivityData(getAllActivity.data);
   } catch (error) {
     console.log(error);
   }
