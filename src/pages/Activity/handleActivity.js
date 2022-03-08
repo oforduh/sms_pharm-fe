@@ -34,6 +34,8 @@ export const handleGetActivity = async function ({
     setTotalPages(getAllActivity.totalPages);
     setPageIndex(getAllActivity.currentPage);
     setActivityData(getAllActivity.data);
+
+    console.log(getAllActivity.data);
   } catch (error) {
     console.log(error);
   }

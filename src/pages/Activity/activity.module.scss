@@ -20,6 +20,11 @@
   bottom: 0;
 }
 
+.pagination {
+  border: 2px solid red;
+  border-radius: 10px;
+}
+
 .activityParentDiv {
   min-height: 100vh;
   background-color: var(--primary);
@@ -119,6 +124,20 @@
             height: 75vh;
             position: relative;
           }
+          .paginationDiv {
+            ul {
+              border-radius: 10px;
+              background-color: var(--primary);
+
+              li {
+                .page-link {
+                  color: red;
+                }
+              }
+            }
+          }
+
+          // ul.pagination
         }
       }
     }

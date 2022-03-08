@@ -11,6 +11,7 @@ import ReactPaginate from "react-paginate";
 
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
+import TableLoader from "../../components/LoaderTable/TableLoader";
 dayjs.extend(localizedFormat);
 
 const Activity = () => {
@@ -27,8 +28,6 @@ const Activity = () => {
   const [loadingPage, setloadingPage] = useState(false);
   const [loadingTable, setloadingTable] = useState(false);
   const [activityData, setActivityData] = useState(null);
-
-  console.log(loadingPage);
 
   // This functionality runs when there is an error message and pops the message as an alert
   useEffect(() => {
@@ -99,7 +98,7 @@ const Activity = () => {
                 {activityData && !loadingTable ? (
                   <>
                     <Table
-                      headerData={["S/N", "User", "Change", "Date and time"]}
+                      headerData={["S/N", "User", "Activity", "Date and time"]}
                       headerUnderlined={true}
                       columnStyles={[
                         {
@@ -121,7 +120,7 @@ const Activity = () => {
                       ]}
                     >
                       <TableBody>
-                        {activityData.reverse().map((item, index) => {
+                        {activityData.map((item, index) => {
                           return (
                             <TableRow
                               key={index}
@@ -151,7 +150,7 @@ const Activity = () => {
                   </>
                 ) : (
                   <div className={styles.loaderContainer}>
-                    <MLoader />
+                    <TableLoader />
                   </div>
                 )}
 
@@ -162,7 +161,7 @@ const Activity = () => {
                     onPageChange={(e) => {
                       refreshData(e.selected + 1);
                     }}
-                    pageRangeDisplayed={5}
+                    pageRangeDisplayed={3}
                     pageCount={totalPages}
                     previousLabel="< previous"
                     renderOnZeroPageCount={null}

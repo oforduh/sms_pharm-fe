@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./tableLoader.module.scss";
 
-const Loader = () => {
+const TableLoader = () => {
   return (
     <div className={styles.loaderParent}>
       <div className={styles.loader}></div>
@@ -9,4 +9,4 @@ const Loader = () => {
   );
 };
 
-export default Loader;
+export default TableLoader;
