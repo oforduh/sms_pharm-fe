@@ -263,3 +263,38 @@ Request.prototype.getAllActivity = async function (
     };
   }
 };
+
+Request.prototype.getAllBranch = async function (
+  token,
+  page = 1,
+  limit = 10
+) {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const request = await fetch(
+      `${this.path}?limit=${limit}&page=${page}`,
+      config
+    );
+    const response = await request.json();
+    if (request.status !== 200) {
+      return {
+        status: false,
+        ...response,
+      };
+    }
+    return {
+      status: true,
+      ...response,
+    };
+  } catch (error) {
+    return {
+      status: false,
+      error,
+    };
+  }
+};

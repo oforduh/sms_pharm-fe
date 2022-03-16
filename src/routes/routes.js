@@ -36,6 +36,11 @@ const routes = [
     element: <pages.Login />,
     type: "protected",
   },
+  {
+    path: "/department",
+    element: <pages.Branch />,
+    type: "protected",
+  },
 ];
 
 export default routes;

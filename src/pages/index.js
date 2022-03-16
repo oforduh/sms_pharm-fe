@@ -4,6 +4,7 @@ import Dashboard from "./Dashboard/Dashboard";
 import PatientData from "./PatientData/PatientData";
 import Prescription from "./Prescription/Prescription";
 import Activity from "./Activity/Activity";
+import Branch from "./Branch/Branch";
 
 const pages = {
   Login,
@@ -12,6 +13,7 @@ const pages = {
   PatientData,
   Prescription,
   Activity,
+  Branch,
 };
 
 export default pages;

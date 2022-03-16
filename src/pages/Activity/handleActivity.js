@@ -11,6 +11,7 @@ export const handleGetActivity = async function ({
   setTotalPages,
   setPageIndex,
   page,
+  limit,
 }) {
   setErrorMessage(false);
   setSuccessMessage(false);
@@ -19,7 +20,7 @@ export const handleGetActivity = async function ({
 
   try {
     const request = new Request("activity");
-    const getAllActivity = await request.getAllActivity(token, page);
+    const getAllActivity = await request.getAllActivity(token, page, limit);
 
     if (!getAllActivity.status) {
       setErrorMessage(getAllActivity.message);
@@ -34,8 +35,6 @@ export const handleGetActivity = async function ({
     setTotalPages(getAllActivity.totalPages);
     setPageIndex(getAllActivity.currentPage);
     setActivityData(getAllActivity.data);
-
-    console.log(getAllActivity.data);
   } catch (error) {
     console.log(error);
   }

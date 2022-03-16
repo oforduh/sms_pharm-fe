@@ -3,6 +3,7 @@ import * as MdIcons from "react-icons/md";
 import * as FaIcons from "react-icons/fa";
 import * as BsIcons from "react-icons/bs";
 import * as CgIcons from "react-icons/cg";
+import * as BiIcons from "react-icons/bi";
 
 export const SidebarData = [
   {
@@ -27,6 +28,12 @@ export const SidebarData = [
     title: "Admin",
     path: "/admins",
     icon: <BsIcons.BsFillPeopleFill />,
+    cName: "nav-text",
+  },
+  {
+    title: "Department",
+    path: "/department",
+    icon: <BiIcons.BiNews />,
     cName: "nav-text",
   },
   {

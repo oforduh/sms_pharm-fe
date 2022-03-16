@@ -452,7 +452,7 @@ const Account = () => {
                 </div>
                 <div>
                   <div>
-                   <span>Terminate other session</span> 
+                    <span>Terminate other session</span>
                   </div>
                   <p className={styles.textCustomizer}>
                     Logs out session on all other connected devices

@@ -1,34 +1,42 @@
+.paginationDiv {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  //   border: 2px solid red;
+  .paginationContDiv {
+    width: 95%;
+    display: flex;
+    justify-content: end;
+  }
+}
+
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  border-radius: 7px;
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+  width: 5px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
+  background: #7cc3c1;
   border-radius: 10px;
 }
 
-.paginationDiv {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
-  bottom: 0;
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #7cc3c1;
 }
-
-.pagination {
-  border: 2px solid red;
-  border-radius: 10px;
-}
-
 .activityParentDiv {
   min-height: 100vh;
   background-color: var(--primary);
-
   position: relative;
 
   .activityContentDiv {
@@ -43,101 +51,125 @@
     height: 97%;
     display: flex;
     background-color: var(--dashboardColor);
-    scroll-behavior: smooth;
-    // overflow: scroll;
     .active {
       width: 92%;
       transition: 300ms;
     }
     .activityPageDiv {
       scroll-behavior: smooth;
-      overflow: scroll;
+      overflow-y: scroll;
+      overflow-x: hidden;
       width: 100%;
       height: 100%;
       // border: 2px solid red;
       .activityMenu {
         border-bottom: 0.2px solid var(--grey);
-        padding: 0 20px;
+        margin: 20px 0;
         width: 100%;
-        height: 10%;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        // border: 2px solid red;
-        .searchBarParentContainer {
-          padding: 0 0 0 10px;
-          height: 50px;
-          width: 500px;
-          .searchBarCont {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-            border: 2px solid var(--grey);
-            .searchBarIcon {
-              color: #ddd;
-              font-size: 25px;
-              width: 5%;
-              padding-left: 7px;
-            }
-            input {
-              width: 85%;
-              height: 100%;
-              outline: none;
-              border: none;
-              background-color: var(--activityColor);
-              padding-left: 7px;
-            }
+        justify-content: center;
 
-            button {
-              width: 10%;
-              background-color: var(--primary);
-              border: none;
-              font-weight: bolder;
+        .activityMenuContent {
+          width: 95%;
+          border-bottom: 0.2px solid var(--grey);
+          height: 10%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .searchBarParentContainer {
+            margin-bottom: 10px;
+            padding: 0 0 0 10px;
+            height: 50px;
+            width: 500px;
+            .searchBarCont {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 100%;
               height: 100%;
-              .searchBarIcon2 {
+              border: 2px solid var(--grey);
+              .searchBarIcon {
+                color: #ddd;
+                font-size: 25px;
+                width: 5%;
+                padding-left: 7px;
+              }
+              input {
+                width: 85%;
+                height: 100%;
+                outline: none;
+                border: none;
+                background-color: var(--branchColor);
+                padding-left: 7px;
+              }
+
+              button {
+                width: 10%;
+                background-color: var(--primary);
+                border: none;
                 font-weight: bolder;
                 height: 100%;
-                color: var(--white);
-                font-size: 30px;
+                .searchBarIcon2 {
+                  font-weight: bolder;
+                  height: 100%;
+                  color: var(--white);
+                  font-size: 30px;
+                }
               }
             }
           }
         }
       }
-      .activityTableParentDiv {
-        box-sizing: border-box;
-        margin-top: 30px;
-        // border: 2px solid red;
+      .sortParentDiv {
         width: 100%;
         display: flex;
         justify-content: center;
-        min-height: 90%;
+        align-items: center;
+        min-height: 5%;
+        margin-right: 5%;
+        .sortContentDiv {
+          display: flex;
+          justify-content: flex-end;
+          width: 95%;
+
+          label {
+            color: var(--primary);
+            font-weight: bold;
+            padding-right: 10px;
+          }
+          select {
+            width: 40px;
+            option {
+              background-color: var(--primary);
+              font-weight: bold;
+            }
+          }
+        }
+      }
+      .activityTableParentDiv {
+        // border: 2px solid red;
+        // box-sizing: border-box;
+        margin-top: 10px;
+        width: 100%;
+
+        min-height: 70%;
+        display: flex;
+        justify-content: center;
 
         .activityTableCont {
-          width: 90%;
+          width: 95%;
           min-height: 70%;
-          // border: 2px solid red;
+
+          scroll-behavior: smooth;
+          overflow-x: hidden;
+          overflow-y: scroll;
 
           .loaderContainer {
             height: 75vh;
             position: relative;
           }
-          .paginationDiv {
-            ul {
-              border-radius: 10px;
-              background-color: var(--primary);
-
-              li {
-                .page-link {
-                  color: red;
-                }
-              }
-            }
-          }
-
-          // ul.pagination
         }
       }
     }
