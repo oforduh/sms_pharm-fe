@@ -1,5 +1,4 @@
 import { Request } from "../../helpers/request.js";
-import { toast } from "react-toastify";
 
 export const handleGetbranch = async function ({
   token,
@@ -12,16 +11,16 @@ export const handleGetbranch = async function ({
   setPageIndex,
   page,
   limit,
+  sort,
 }) {
   setErrorMessage(false);
   setSuccessMessage(false);
   setloadingTable(true);
   if (!page) setloadingPage(true);
 
-  
   try {
     const request = new Request("branch");
-    const getAllbranch = await request.getAllBranch(token, page, limit);
+    const getAllbranch = await request.getAllBranch(token, page, limit, sort);
 
     if (!getAllbranch.status) {
       setErrorMessage(getAllbranch.message);

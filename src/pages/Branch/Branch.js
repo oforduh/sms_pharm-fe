@@ -44,6 +44,7 @@ const Branch = () => {
     thrash: false,
   });
   const [limit, setLimit] = useState(10);
+  const [sort, setSort] = useState(-1);
   const [currentPage, setCurrentPage] = useState(1);
   const [initialRender, setInitialRender] = useState(true);
 
@@ -72,6 +73,7 @@ const Branch = () => {
       setPageIndex,
       page,
       limit,
+      sort,
     });
   };
 
@@ -90,10 +92,32 @@ const Branch = () => {
         setPageIndex,
         page,
         limit,
+        sort,
       });
     };
     !initialRender && getPaginationLimit();
   }, [limit]);
+
+  //   This functionality runs when newest to oldest or oldest to newest changes
+  useEffect(() => {
+    const getMostRecentData = () => {
+      let page = currentPage;
+      handleGetbranch({
+        token,
+        setErrorMessage,
+        setSuccessMessage,
+        setloadingTable,
+        setloadingPage,
+        setBranchData,
+        setTotalPages,
+        setPageIndex,
+        page,
+        limit,
+        sort,
+      });
+    };
+    !initialRender && getMostRecentData();
+  }, [sort]);
 
   //   This functionality runs for the first time to get all branch
   useEffect(() => {
@@ -106,6 +130,7 @@ const Branch = () => {
       setBranchData,
       setTotalPages,
       setPageIndex,
+      sort,
     });
     setInitialRender(false);
   }, []);
@@ -123,6 +148,11 @@ const Branch = () => {
     setLimit(e.target.value);
   };
 
+  //functionality that handles sort by recent files
+  const handleSortByMostRecentData = (e) => {
+    setSort(e.target.value);
+  };
+  console.log(sort);
   return (
     <div className={styles.branchParentDiv}>
       <Navbar sidebar={sidebar} setSidebar={setSidebar} />
@@ -198,15 +228,17 @@ const Branch = () => {
                   <option value="15">15</option>
                   <option value="20">20</option>
                 </select>
-                <label>Sort by: </label>
+                <label className={styles.margin4SortByMostRecent}>
+                  Sort by:{" "}
+                </label>
                 <select
-                  value={limit}
+                  value={sort}
                   onChange={(event) => {
-                    handleSelectedLimit4Pagination(event);
+                    handleSortByMostRecentData(event);
                   }}
                 >
-                  <option value="5">Newest to oldest</option>
-                  <option value="10">Oldest to newest</option>
+                  <option value="-1">Newest to oldest</option>
+                  <option value="1">Oldest to newest</option>
                 </select>
               </div>
             </div>

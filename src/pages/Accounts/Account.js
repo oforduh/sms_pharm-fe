@@ -5,7 +5,7 @@ import { UserObject } from "../../context/User.js";
 import * as FiIcons from "react-icons/fi";
 import * as AiIcons from "react-icons/ai";
 import { toast } from "react-toastify";
-import MLoader from "../../components/miniLoader/mLoader.js";
+// import MLoader from "../../components/miniLoader/mLoader.js";
 import { handleImg, deleteImgPreview } from "../../helpers/imagePreview.js";
 import dummyImage from "./user.png";
 

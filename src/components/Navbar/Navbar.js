@@ -20,9 +20,9 @@ const Navbar = ({ sidebar, setSidebar }) => {
   const { setIsLoading } = IsLoadingObject();
 
   // set the default profile picture
-  const [{ alt, src }, setImg] = useState({
+  const [{ alt, src }] = useState({
     src: user?.avatar ? user.avatar : dummyImage,
-    alt: "Upload an Image",
+    alt: user?.avatar ? "User Avatar" : "Upload an Image",
   });
 
   // This toggle between opening and closing the dashboard

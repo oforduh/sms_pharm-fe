@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import styles from "./dashboard.module.scss";
 import * as BsIcons from "react-icons/bs";
-import { IsLoadingObject } from "../../context/LoaderContext";
+// import { IsLoadingObject } from "../../context/LoaderContext";
 
 const Dashboard = () => {
   // const { setIsLoading } = IsLoadingObject();

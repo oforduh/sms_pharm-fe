@@ -1,5 +1,6 @@
 {
   "cSpell.ignoreWords": [
+    "Allbranch",
     "Customizer",
     "Getbranch",
     "Twotone",
@@ -11,6 +12,8 @@
     "regexpu",
     "setimage",
     "setloading",
+    "setmost",
+    "setsort",
     "setupdating",
     "toastify"
   ]

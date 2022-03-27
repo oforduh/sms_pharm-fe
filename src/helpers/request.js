@@ -267,7 +267,8 @@ Request.prototype.getAllActivity = async function (
 Request.prototype.getAllBranch = async function (
   token,
   page = 1,
-  limit = 10
+  limit = 10,
+  sort = -1
 ) {
   const config = {
     headers: {
@@ -277,7 +278,7 @@ Request.prototype.getAllBranch = async function (
 
   try {
     const request = await fetch(
-      `${this.path}?limit=${limit}&page=${page}`,
+      `${this.path}?sort=${sort}&limit=${limit}&page=${page}`,
       config
     );
     const response = await request.json();

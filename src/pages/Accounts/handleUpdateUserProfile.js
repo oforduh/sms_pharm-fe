@@ -40,6 +40,7 @@ export const handleUpdateUserProfile = async function ({
         if (item) {
           obj[keys[idx]] = item;
         }
+        return obj;
       });
 
       const request = new Request("user/me/edit");
@@ -69,6 +70,7 @@ export const handleUpdateUserProfile = async function ({
       if (item) {
         obj[keys[idx]] = item;
       }
+      return obj;
     });
 
     const request = new Request("user/me/edit");
@@ -123,6 +125,7 @@ export const handleUpdateUserPassword = async function ({
       if (item) {
         obj[keys[index]] = item;
       }
+      return obj;
     });
 
     const request = new Request("changePassword");

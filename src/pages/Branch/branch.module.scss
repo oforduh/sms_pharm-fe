@@ -8,7 +8,7 @@
   .paginationContDiv {
     width: 95%;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   }
 }
 
@@ -35,27 +35,9 @@
   background: #7cc3c1;
 }
 
-// .paginationDiv {
-//   display: flex;
-//   justify-content: flex-end;
-//   ul {
-//     display: flex;
-//     justify-content: center;
-
-//     li {
-//       padding: 10px;
-//       cursor: pointer;
-
-//       &:hover {
-//         background-color: var(--primary-color);
-//         a {
-//           color: #fff;
-//         }
-//       }
-//     }
-//   }
-// }
-
+.margin4SortByMostRecent {
+  margin-left: 20px;
+}
 .branchParentDiv {
   min-height: 100vh;
   background-color: var(--primary);
