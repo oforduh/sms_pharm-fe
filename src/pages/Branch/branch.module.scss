@@ -73,10 +73,6 @@
     height: 97%;
     display: flex;
     background-color: var(--dashboardColor);
-    .active {
-      width: 92%;
-      transition: 300ms;
-    }
     .branchPageDiv {
       scroll-behavior: smooth;
       overflow-y: scroll;
@@ -176,6 +172,7 @@
         align-items: center;
         min-height: 5%;
         margin-right: 5%;
+        // margin-right: 20px;
         .sortContentDiv {
           display: flex;
           justify-content: flex-end;
@@ -187,7 +184,7 @@
             padding-right: 10px;
           }
           select {
-            width: 40px;
+            min-width: 40px;
             option {
               background-color: var(--primary);
               font-weight: bold;
@@ -219,5 +216,9 @@
         }
       }
     }
+  }
+  .active {
+    width: 92%;
+    transition: 300ms;
   }
 }

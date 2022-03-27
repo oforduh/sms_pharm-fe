@@ -51,10 +51,6 @@
     height: 97%;
     display: flex;
     background-color: var(--dashboardColor);
-    .active {
-      width: 92%;
-      transition: 300ms;
-    }
     .activityPageDiv {
       scroll-behavior: smooth;
       overflow-y: scroll;
@@ -173,5 +169,9 @@
         }
       }
     }
+  }
+  .active {
+    width: 92%;
+    transition: 300ms;
   }
 }

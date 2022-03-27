@@ -25,7 +25,7 @@ const Navbar = ({ sidebar, setSidebar }) => {
     alt: "Upload an Image",
   });
 
-  // This toggle between opening and closin the dashboard
+  // This toggle between opening and closing the dashboard
   const showSidebar = () => {
     setSidebar(!sidebar);
   };

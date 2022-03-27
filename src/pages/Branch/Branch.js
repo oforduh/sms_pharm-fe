@@ -186,7 +186,7 @@ const Branch = () => {
             </div>
             <div className={styles.sortParentDiv}>
               <div className={styles.sortContentDiv}>
-                <label htmlFor="">Show: </label>
+                <label>Show: </label>
                 <select
                   value={limit}
                   onChange={(event) => {
@@ -197,6 +197,16 @@ const Branch = () => {
                   <option value="10">10</option>
                   <option value="15">15</option>
                   <option value="20">20</option>
+                </select>
+                <label>Sort by: </label>
+                <select
+                  value={limit}
+                  onChange={(event) => {
+                    handleSelectedLimit4Pagination(event);
+                  }}
+                >
+                  <option value="5">Newest to oldest</option>
+                  <option value="10">Oldest to newest</option>
                 </select>
               </div>
             </div>

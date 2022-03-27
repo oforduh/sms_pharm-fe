@@ -13,6 +13,7 @@ const getRouteType = ({ element, type }) => {
     public: <PublicRoute>{element}</PublicRoute>,
   };
 
+  // returns the value of the key
   return routeType[type];
 };
 

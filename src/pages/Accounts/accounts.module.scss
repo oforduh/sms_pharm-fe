@@ -61,272 +61,272 @@
     border-radius: 10 px;
     transition: 300ms;
     min-height: 97vh;
-    display: flex;
+    // display: flex;
+    .ManageAccountContainer {
+      scroll-behavior: smooth;
+      overflow: scroll;
+
+      width: 100%;
+      height: 100%;
+      .linkParentDiv {
+        background-color: var(--secondary);
+        width: 100%;
+        height: 8vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .linkContentDiv {
+          display: flex;
+          align-items: center;
+          width: 80%;
+          height: 100%;
+        }
+      }
+
+      .profileParentDiv {
+        width: 100%;
+        min-height: 50vh;
+        border-radius: 3px solid;
+        display: flex;
+        justify-content: center;
+        .profileContentDiv {
+          border-bottom: 1px solid #e7ebf3;
+          width: 80%;
+          height: 100%vh;
+          margin: 25px 0;
+          display: grid;
+          display: grid;
+          grid-template-columns: 1fr 2fr;
+          grid-column-gap: 30px;
+          .editProfileText {
+            margin-bottom: 20px;
+          }
+
+          // profile form styling starts here
+          .profileForm {
+            height: 100%vh;
+            .imageContainer {
+              margin-bottom: 30px;
+              display: grid;
+              place-items: center;
+              .imageContent {
+                position: relative;
+                height: 100%;
+                display: grid;
+                place-items: center;
+                img {
+                  width: 200px;
+                  height: 200px;
+                  border-radius: 50%;
+                }
+                .iconUploader {
+                  border-radius: 50%;
+                  width: 35px;
+                  height: 35px;
+                  background-color: var(--primary);
+                  color: var(--white);
+                  display: grid;
+                  place-items: center;
+                  position: absolute;
+                  right: 1%;
+                  bottom: 15%;
+                }
+
+                .deleteImagePreview {
+                  color: var(--danger);
+                  background-color: var(--white);
+                }
+              }
+            }
+
+            form {
+              width: 100%;
+              .signingMessage {
+                display: block;
+                text-align: center;
+                color: var(--primary);
+                margin-bottom: 15px;
+              }
+              .splitInputField {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-column-gap: 30px;
+              }
+              .formGroup {
+                width: 100%;
+                label {
+                  color: #475366;
+                  line-height: 1.5;
+                }
+              }
+              .formControl {
+                &::placeholder {
+                  color: var(--primary);
+                }
+                font-weight: bolder;
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 30px;
+                box-sizing: border-box;
+                outline: none;
+                // border-color: var(--primary);
+              }
+              button {
+                background-color: var(--primary);
+                color: var(--white);
+                padding: 8px;
+                width: 100%;
+                border: none;
+                border-radius: 5px;
+                font-weight: bolder;
+              }
+            }
+          }
+        }
+      }
+
+      // password section styling starts here
+      .passwordParentDiv {
+        width: 100%;
+        min-height: 30vh;
+        border-radius: 3px solid;
+        display: flex;
+        justify-content: center;
+        .passwordContentDiv {
+          border-bottom: 1px solid #e7ebf3;
+          width: 80%;
+          height: 100%vh;
+          margin: 25px 0;
+          display: grid;
+          display: grid;
+          grid-template-columns: 1fr 2fr;
+          grid-column-gap: 30px;
+          .editProfileText {
+            margin-bottom: 20px;
+          }
+          .passwordForm {
+            // border: 2px solid var(--danger);
+            height: 100%vh;
+            img {
+              width: 200px;
+              height: 200px;
+              border-radius: 50%;
+              margin-bottom: 30px;
+            }
+            form {
+              width: 100%;
+              .splitInputField {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-column-gap: 30px;
+              }
+              .formGroup {
+                // border: 2px solid red;
+                width: 100%;
+                align-items: center;
+                margin-bottom: 30px;
+                padding: 0;
+                label {
+                  color: #475366;
+                  line-height: 1.5;
+                }
+                .inputParentDiv {
+                  .inputParentCont {
+                    display: flex;
+                    align-items: center;
+                    // border: 2px solid red;
+                    border: 1px solid var(--grey);
+                    width: 100%;
+                    height: 42.5px;
+                    .formControl {
+                      width: 90%;
+                      padding-left: 10px;
+
+                      box-sizing: border-box;
+                      outline: none;
+                      border: none;
+                      border-radius: 8px;
+                    }
+
+                    .eyeIcon {
+                      background: none;
+                      width: 10%;
+                      color: black;
+                      font-size: 15px;
+                      display: flex;
+                      justify-content: flex-end;
+                      margin-right: 10px;
+                    }
+                    .eyeIcon2 {
+                      background: none;
+                      width: 10%;
+                      color: black;
+                      font-size: 15px;
+                      display: flex;
+                      justify-content: flex-end;
+                      margin-right: 10px;
+                    }
+                  }
+                }
+              }
+              button {
+                background-color: var(--primary);
+                color: var(--white);
+                padding: 8px;
+                width: 100%;
+                border: none;
+                border-radius: 5px;
+                font-weight: bolder;
+              }
+            }
+          }
+        }
+      }
+
+      // Delete Account Styling
+      .closeAccountParentDiv {
+        width: 100%;
+        min-height: 10vh;
+        border-radius: 3px solid;
+        display: flex;
+        justify-content: center;
+        .closeAccountContentDiv {
+          border-bottom: 1px solid #e7ebf3;
+          // border: 2px solid red;
+          width: 80%;
+          height: 100%vh;
+          margin: 25px 0;
+          display: grid;
+          display: grid;
+          grid-template-columns: 1fr 2fr;
+          grid-column-gap: 30px;
+          .textCustomizer span {
+            color: var(--danger);
+          }
+          .sectionHeader {
+            color: var(--danger);
+          }
+          button {
+            background-color: #fff;
+            font-weight: 100;
+            font-size: 13px;
+            color: var(--danger);
+            padding: 6px;
+            width: 25%;
+            border: 1px solid var(--danger);
+            border-radius: 5px;
+            font-weight: bolder;
+          }
+          span {
+            font-weight: bolder;
+            color: var(--primary);
+          }
+        }
+      }
+    }
   }
   .active {
     width: 92%;
     transition: 300ms;
-  }
-  .ManageAccountContainer {
-    scroll-behavior: smooth;
-    overflow: scroll;
-
-    width: 100%;
-    height: 100%;
-    .linkParentDiv {
-      background-color: var(--secondary);
-      width: 100%;
-      height: 8vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      .linkContentDiv {
-        display: flex;
-        align-items: center;
-        width: 80%;
-        height: 100%;
-      }
-    }
-
-    .profileParentDiv {
-      width: 100%;
-      min-height: 50vh;
-      border-radius: 3px solid;
-      display: flex;
-      justify-content: center;
-      .profileContentDiv {
-        border-bottom: 1px solid #e7ebf3;
-        width: 80%;
-        height: 100%vh;
-        margin: 25px 0;
-        display: grid;
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        grid-column-gap: 30px;
-        .editProfileText {
-          margin-bottom: 20px;
-        }
-
-        // profile form styling starts here
-        .profileForm {
-          height: 100%vh;
-          .imageContainer {
-            margin-bottom: 30px;
-            display: grid;
-            place-items: center;
-            .imageContent {
-              position: relative;
-              height: 100%;
-              display: grid;
-              place-items: center;
-              img {
-                width: 200px;
-                height: 200px;
-                border-radius: 50%;
-              }
-              .iconUploader {
-                border-radius: 50%;
-                width: 35px;
-                height: 35px;
-                background-color: var(--primary);
-                color: var(--white);
-                display: grid;
-                place-items: center;
-                position: absolute;
-                right: 1%;
-                bottom: 15%;
-              }
-
-              .deleteImagePreview {
-                color: var(--danger);
-                background-color: var(--white);
-              }
-            }
-          }
-
-          form {
-            width: 100%;
-            .signingMessage {
-              display: block;
-              text-align: center;
-              color: var(--primary);
-              margin-bottom: 15px;
-            }
-            .splitInputField {
-              display: grid;
-              grid-template-columns: 1fr 1fr;
-              grid-column-gap: 30px;
-            }
-            .formGroup {
-              width: 100%;
-              label {
-                color: #475366;
-                line-height: 1.5;
-              }
-            }
-            .formControl {
-              &::placeholder {
-                color: var(--primary);
-              }
-              font-weight: bolder;
-              width: 100%;
-              padding: 8px;
-              margin-bottom: 30px;
-              box-sizing: border-box;
-              outline: none;
-              // border-color: var(--primary);
-            }
-            button {
-              background-color: var(--primary);
-              color: var(--white);
-              padding: 8px;
-              width: 100%;
-              border: none;
-              border-radius: 5px;
-              font-weight: bolder;
-            }
-          }
-        }
-      }
-    }
-
-    // password section styling starts here
-    .passwordParentDiv {
-      width: 100%;
-      min-height: 30vh;
-      border-radius: 3px solid;
-      display: flex;
-      justify-content: center;
-      .passwordContentDiv {
-        border-bottom: 1px solid #e7ebf3;
-        width: 80%;
-        height: 100%vh;
-        margin: 25px 0;
-        display: grid;
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        grid-column-gap: 30px;
-        .editProfileText {
-          margin-bottom: 20px;
-        }
-        .passwordForm {
-          // border: 2px solid var(--danger);
-          height: 100%vh;
-          img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            margin-bottom: 30px;
-          }
-          form {
-            width: 100%;
-            .splitInputField {
-              display: grid;
-              grid-template-columns: 1fr 1fr;
-              grid-column-gap: 30px;
-            }
-            .formGroup {
-              // border: 2px solid red;
-              width: 100%;
-              align-items: center;
-              margin-bottom: 30px;
-              padding: 0;
-              label {
-                color: #475366;
-                line-height: 1.5;
-              }
-              .inputParentDiv {
-                .inputParentCont {
-                  display: flex;
-                  align-items: center;
-                  // border: 2px solid red;
-                  border: 1px solid var(--grey);
-                  width: 100%;
-                  height: 42.5px;
-                  .formControl {
-                    width: 90%;
-                    padding-left: 10px;
-
-                    box-sizing: border-box;
-                    outline: none;
-                    border: none;
-                    border-radius: 8px;
-                  }
-
-                  .eyeIcon {
-                    background: none;
-                    width: 10%;
-                    color: black;
-                    font-size: 15px;
-                    display: flex;
-                    justify-content: flex-end;
-                    margin-right: 10px;
-                  }
-                  .eyeIcon2 {
-                    background: none;
-                    width: 10%;
-                    color: black;
-                    font-size: 15px;
-                    display: flex;
-                    justify-content: flex-end;
-                    margin-right: 10px;
-                  }
-                }
-              }
-            }
-            button {
-              background-color: var(--primary);
-              color: var(--white);
-              padding: 8px;
-              width: 100%;
-              border: none;
-              border-radius: 5px;
-              font-weight: bolder;
-            }
-          }
-        }
-      }
-    }
-
-    // Delete Account Styling
-    .closeAccountParentDiv {
-      width: 100%;
-      min-height: 10vh;
-      border-radius: 3px solid;
-      display: flex;
-      justify-content: center;
-      .closeAccountContentDiv {
-        border-bottom: 1px solid #e7ebf3;
-        // border: 2px solid red;
-        width: 80%;
-        height: 100%vh;
-        margin: 25px 0;
-        display: grid;
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        grid-column-gap: 30px;
-        .textCustomizer span {
-          color: var(--danger);
-        }
-        .sectionHeader {
-          color: var(--danger);
-        }
-        button {
-          background-color: #fff;
-          font-weight: 100;
-          font-size: 13px;
-          color: var(--danger);
-          padding: 6px;
-          width: 25%;
-          border: 1px solid var(--danger);
-          border-radius: 5px;
-          font-weight: bolder;
-        }
-        span {
-          font-weight: bolder;
-          color: var(--primary);
-        }
-      }
-    }
   }
 }

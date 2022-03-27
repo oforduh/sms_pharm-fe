@@ -31,5 +31,4 @@ export const handleUserLogin = async function ({
       window.location.replace("/");
     }, 3000);
   }
-  console.log(login);
 };

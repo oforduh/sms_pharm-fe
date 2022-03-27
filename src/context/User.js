@@ -41,6 +41,7 @@ export const UserProvider = ({ children }) => {
     }
   }, []);
 
+  // Setting up SWR
   const requestConfig = {
     headers: {
       Authorization: `Bearer ${getToken}`,
@@ -57,7 +58,7 @@ export const UserProvider = ({ children }) => {
   if (error) {
     setTimeout(() => {
       window.location.replace("/login");
-    }, 31000);
+    }, 1000);
     console.log(error);
   } else {
     try {

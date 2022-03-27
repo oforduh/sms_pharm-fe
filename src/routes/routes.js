@@ -39,7 +39,7 @@ const routes = [
   {
     path: "/department",
     element: <pages.Branch />,
-    type: "protected",
+    type: "authenticated",
   },
 ];
 
