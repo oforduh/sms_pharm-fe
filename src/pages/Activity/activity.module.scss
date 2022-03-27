@@ -34,6 +34,9 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #7cc3c1;
 }
+.margin4SortByMostRecent {
+  margin-left: 20px;
+}
 .activityParentDiv {
   min-height: 100vh;
   background-color: var(--primary);
@@ -136,7 +139,7 @@
             padding-right: 10px;
           }
           select {
-            width: 40px;
+            min-width: 40px;
             option {
               background-color: var(--primary);
               font-weight: bold;

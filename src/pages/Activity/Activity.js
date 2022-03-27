@@ -30,6 +30,7 @@ const Activity = () => {
   const { token } = UserObject();
   const [sidebar, setSidebar] = useState(false);
 
+  const [sort, setSort] = useState(-1);
   const [limit, setLimit] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [initialRender, setInitialRender] = useState(true);
@@ -104,9 +105,35 @@ const Activity = () => {
     !initialRender && getPaginationLimit();
   }, [limit]);
 
+  //   This functionality runs when newest to oldest or oldest to newest changes
+  useEffect(() => {
+    const getMostRecentData = () => {
+      let page = currentPage;
+      handleGetActivity({
+        token,
+        setErrorMessage,
+        setSuccessMessage,
+        setloadingTable,
+        setloadingPage,
+        setActivityData,
+        setTotalPages,
+        setPageIndex,
+        page,
+        limit,
+        sort,
+      });
+    };
+    !initialRender && getMostRecentData();
+  }, [sort]);
+
   //functionality that set limit for pagination
   const handleSelectedLimit4Pagination = (e) => {
     setLimit(e.target.value);
+  };
+
+  //functionality that handles sort by recent files
+  const handleSortByMostRecentData = (e) => {
+    setSort(e.target.value);
   };
 
   return (
@@ -148,6 +175,18 @@ const Activity = () => {
                   <option value="10">10</option>
                   <option value="15">15</option>
                   <option value="20">20</option>
+                </select>
+                <label className={styles.margin4SortByMostRecent}>
+                  Sort by:{" "}
+                </label>
+                <select
+                  value={sort}
+                  onChange={(event) => {
+                    handleSortByMostRecentData(event);
+                  }}
+                >
+                  <option value="-1">Newest to oldest</option>
+                  <option value="1">Oldest to newest</option>
                 </select>
               </div>
             </div>

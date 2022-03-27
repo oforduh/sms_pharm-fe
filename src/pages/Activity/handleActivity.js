@@ -1,6 +1,5 @@
 import { Request } from "../../helpers/request.js";
 
-
 export const handleGetActivity = async function ({
   token,
   setErrorMessage,
@@ -12,6 +11,7 @@ export const handleGetActivity = async function ({
   setPageIndex,
   page,
   limit,
+  sort,
 }) {
   setErrorMessage(false);
   setSuccessMessage(false);
@@ -20,7 +20,12 @@ export const handleGetActivity = async function ({
 
   try {
     const request = new Request("activity");
-    const getAllActivity = await request.getAllActivity(token, page, limit);
+    const getAllActivity = await request.getAllActivity(
+      token,
+      page,
+      limit,
+      sort
+    );
 
     if (!getAllActivity.status) {
       setErrorMessage(getAllActivity.message);
