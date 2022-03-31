@@ -3,3 +3,26 @@
   margin: 0;
   padding: 0;
 }
+
+.tableLinks {
+  color: var(--primary) !important;
+  text-decoration: none !important;
+  font-weight: bolder;
+}
+
+
+/* overwriting the pagination default styling */
+.page-link {
+  color: var(--primary) !important;
+  font-weight: bolder;
+}
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff !important;
+  background-color: var(--primary) !important;
+  border: none !important;
+}
+
+.page-link:focus {
+  box-shadow: none !important;
+}

@@ -23,7 +23,7 @@ import localizedFormat from "dayjs/plugin/localizedFormat";
 dayjs.extend(localizedFormat);
 
 const Account = () => {
-  // getting the user profile from context
+  // getting the user profile and token from context
   const { user, setUser, token } = UserObject();
 
   // This state is used to handle alert

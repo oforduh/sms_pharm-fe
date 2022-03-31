@@ -300,3 +300,65 @@ Request.prototype.getAllBranch = async function (
     };
   }
 };
+
+Request.prototype.updateBranchData = async function (obj, token) {
+  const config = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(obj),
+  };
+
+  try {
+    const request = await fetch(this.path, config);
+    const response = await request.json();
+    if (request.status !== 200) {
+      return {
+        status: false,
+        ...response,
+      };
+    }
+    return {
+      status: true,
+      ...response,
+    };
+  } catch (error) {
+    return {
+      status: false,
+      error,
+    };
+  }
+};
+
+Request.prototype.createBranchData = async function (obj, token) {
+  const config = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(obj),
+  };
+
+  try {
+    const request = await fetch(this.path, config);
+    const response = await request.json();
+    if (request.status !== 200) {
+      return {
+        status: false,
+        ...response,
+      };
+    }
+    return {
+      status: true,
+      ...response,
+    };
+  } catch (error) {
+    return {
+      status: false,
+      error,
+    };
+  }
+};

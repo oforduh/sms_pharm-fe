@@ -8,12 +8,17 @@
     "browserslist",
     "compat",
     "gensync",
+    "handleEditbranch",
     "jsesc",
     "regexpu",
+    "setbranch",
+    "setcreate",
     "setimage",
     "setloading",
     "setmost",
+    "setselected",
     "setsort",
+    "settoggle",
     "setupdating",
     "toastify"
   ]

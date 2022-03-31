@@ -11,6 +11,7 @@ export const TableRow = ({ rowData, rowStyles = {}, columnStyles }) => {
             style={{ ...columnStyles[idx], ...data.styles }}
             key={idx}
             onClick={data.onClick || null}
+            className={data.className}
           >
             {data.text}
           </td>

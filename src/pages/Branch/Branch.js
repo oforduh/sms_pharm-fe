@@ -1,4 +1,8 @@
-import React, { useState, useEffect } from "react";
+// for the sweet alert
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css"; //
+
+import React, { useState, useEffect, useRef } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import styles from "./branch.module.scss";
 import * as BsIcons from "react-icons/bs";
@@ -18,6 +22,8 @@ import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import TableLoader from "../../components/LoaderTable/TableLoader";
 import { Link } from "react-router-dom";
+import EditBranch from "../../components/Modals/Branch/EditBranch";
+import CreateBranch from "../../components/createBranch/CreateBranch";
 dayjs.extend(localizedFormat);
 
 const Branch = () => {
@@ -152,7 +158,48 @@ const Branch = () => {
   const handleSortByMostRecentData = (e) => {
     setSort(e.target.value);
   };
-  console.log(sort);
+
+  // The modal to update a branch data starts here
+  const modalRef = useRef();
+  const [toggleModalContainer, settoggleModalContainer] = useState(false);
+  const [selectedBranch, setselectedBranch] = useState("");
+  const [branchId, setbranchId] = useState("");
+
+  // This functionality show the modal
+  const showEditModal = (item) => {
+    settoggleModalContainer(!toggleModalContainer);
+    setselectedBranch(item.branch);
+    setbranchId(item._id);
+  };
+
+  // This functionality show the modal
+  const closeEditModal = () => {
+    settoggleModalContainer(!toggleModalContainer);
+  };
+
+  // The modal to update a branch data end here
+
+  // sweet alert functionality starts here
+  const sweetAlertFunctionality = () => {
+    confirmAlert({
+      title: "Confirm to submit",
+      message: "Are you sure to do this.",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => alert("Click Yes"),
+        },
+        {
+          label: "No",
+          onClick: () => {
+            return;
+          },
+        },
+      ],
+    });
+  };
+  // sweet alert functionality starts here
+
   return (
     <div className={styles.branchParentDiv}>
       <Navbar sidebar={sidebar} setSidebar={setSidebar} />
@@ -163,6 +210,18 @@ const Branch = () => {
           <MLoader />
         ) : (
           <div className={styles.branchPageDiv}>
+            {/*Modal for closing and opening branch starts here  */}
+            <EditBranch
+              toggleModalContainer={toggleModalContainer}
+              closeEditModal={closeEditModal}
+              selectedBranch={selectedBranch}
+              setselectedBranch={setselectedBranch}
+              branchId={branchId}
+              refreshData={refreshData}
+              currentPage={currentPage}
+            />
+            {/*Modal for closing and opening branch end here  */}
+
             <div className={styles.branchMenu}>
               <div className={styles.branchMenuContent}>
                 <div className={styles.branchText}>
@@ -206,7 +265,6 @@ const Branch = () => {
                   style={{
                     color: showTab.thrash && "#7cc3c1",
                     backgroundColor: showTab.thrash && "#fff",
-                    color: showTab.thrash && "rgba(255, 0, 0, 0.683)",
                     fontWeight: "bold",
                   }}
                 >
@@ -214,34 +272,36 @@ const Branch = () => {
                 </button>
               </div>
             </div>
-            <div className={styles.sortParentDiv}>
-              <div className={styles.sortContentDiv}>
-                <label>Show: </label>
-                <select
-                  value={limit}
-                  onChange={(event) => {
-                    handleSelectedLimit4Pagination(event);
-                  }}
-                >
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-                  <option value="20">20</option>
-                </select>
-                <label className={styles.margin4SortByMostRecent}>
-                  Sort by:{" "}
-                </label>
-                <select
-                  value={sort}
-                  onChange={(event) => {
-                    handleSortByMostRecentData(event);
-                  }}
-                >
-                  <option value="-1">Newest to oldest</option>
-                  <option value="1">Oldest to newest</option>
-                </select>
+            {!showTab.createDepartment && (
+              <div div className={styles.sortParentDiv}>
+                <div className={styles.sortContentDiv}>
+                  <label>Show: </label>
+                  <select
+                    value={limit}
+                    onChange={(event) => {
+                      handleSelectedLimit4Pagination(event);
+                    }}
+                  >
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                  </select>
+                  <label className={styles.margin4SortByMostRecent}>
+                    Sort by:{" "}
+                  </label>
+                  <select
+                    value={sort}
+                    onChange={(event) => {
+                      handleSortByMostRecentData(event);
+                    }}
+                  >
+                    <option value="-1">Newest to oldest</option>
+                    <option value="1">Oldest to newest</option>
+                  </select>
+                </div>
               </div>
-            </div>
+            )}
             {showTab.departmentRecord && (
               <>
                 <div className={styles.branchTableParentDiv}>
@@ -304,10 +364,14 @@ const Branch = () => {
 
                                     {
                                       onClick: () => {
-                                        console.log(item._id);
+                                        showEditModal(item);
                                       },
                                       text: <Link to="#">{item.branch}</Link>,
-                                      styles: { width: "20%" },
+                                      styles: {
+                                        width: "20%",
+                                        cursor: "pointer",
+                                      },
+                                      className: "tableLinks",
                                     },
                                     {
                                       text: `${dayjs(item.createdAt).format(
@@ -317,7 +381,7 @@ const Branch = () => {
                                     },
                                     {
                                       onClick: () => {
-                                        console.log(item._id);
+                                        sweetAlertFunctionality();
                                       },
                                       text: <AiIcons.AiFillDelete />,
                                       styles: {
@@ -370,7 +434,17 @@ const Branch = () => {
               </>
             )}
 
-            {showTab.createDepartment && <div>hello</div>}
+            {showTab.createDepartment && (
+              <div>
+                <CreateBranch />
+              </div>
+            )}
+
+            {showTab.thrash && (
+              <div>
+                <CreateBranch />
+              </div>
+            )}
           </div>
         )}
       </div>
