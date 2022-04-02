@@ -210,34 +210,73 @@ const Thrash = ({ token, branchrefreshData, branchcurrentPage }) => {
 
   // DELETE AND RESTORE FUNCTIONALITY END HERE
 
+  // functionality that handles the checkbox
+  const [selectedCheckboxes, setselectedCheckboxes] = useState([]);
+
+  // This functionality handles the checkboxes
+  const handleSelectedCheckboxes = (event) => {
+    // check if the checkbox is already in the array then filter it out
+    if (selectedCheckboxes.includes(event.target.value)) {
+      // using array.splice method
+      const index = selectedCheckboxes.indexOf(event.target.value);
+      setselectedCheckboxes([
+        ...selectedCheckboxes.splice(0, index),
+        ...selectedCheckboxes.splice(index + 1),
+      ]);
+      return;
+
+      // using array.filter method
+      // const filteredSelectedCheckboxes = selectedCheckboxes.filter(
+      //   (item) => item !== event.target.value
+      // );
+      // setselectedCheckboxes(filteredSelectedCheckboxes);
+      // return;
+    }
+
+    setselectedCheckboxes([...selectedCheckboxes, event.target.value]);
+  };
+
   return (
     <div className={styles.thrashPageContainer}>
       <div className={styles.thrashPageDiv}>
         <div div className={styles.sortParentDiv}>
-          <div className={styles.sortContentDiv}>
-            <label>Show: </label>
-            <select
-              value={limit}
-              onChange={(event) => {
-                handleSelectedLimit4Pagination(event);
-              }}
-            >
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-              <option value="20">20</option>
-            </select>
-            <label className={styles.margin4SortByMostRecent}>Sort by: </label>
-            <select
-              value={sort}
-              onChange={(event) => {
-                handleSortByMostRecentData(event);
-              }}
-            >
-              <option value="-1">Newest to oldest</option>
-              <option value="1">Oldest to newest</option>
-            </select>
-          </div>
+          {!selectedCheckboxes.length ? (
+            <div className={styles.sortContentDiv}>
+              <label>Show: </label>
+              <select
+                value={limit}
+                onChange={(event) => {
+                  handleSelectedLimit4Pagination(event);
+                }}
+              >
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+              </select>
+              <label className={styles.margin4SortByMostRecent}>
+                Sort by:{" "}
+              </label>
+              <select
+                value={sort}
+                onChange={(event) => {
+                  handleSortByMostRecentData(event);
+                }}
+              >
+                <option value="-1">Newest to oldest</option>
+                <option value="1">Oldest to newest</option>
+              </select>
+            </div>
+          ) : (
+            <div className={styles.sortContentDiv}>
+              <button>
+                {selectedCheckboxes.length > 1 ? "Delete all" : "Delete"}
+              </button>
+              <button className={styles.restoreButton}>
+                {selectedCheckboxes.length > 1 ? "Restore all" : "Restore"}
+              </button>
+            </div>
+          )}
         </div>
         <>
           <div className={styles.branchTableParentDiv}>
@@ -292,8 +331,11 @@ const Thrash = ({ token, branchrefreshData, branchcurrentPage }) => {
                                   <input
                                     type="checkbox"
                                     id={item._id}
-                                    name={item._id}
-                                    value="Bike"
+                                    value={item._id}
+                                    style={{ cursor: "pointer" }}
+                                    onChange={(event) => {
+                                      handleSelectedCheckboxes(event);
+                                    }}
                                   />
                                 ),
                                 styles: { width: "5%" },
@@ -356,6 +398,8 @@ const Thrash = ({ token, branchrefreshData, branchcurrentPage }) => {
               )}
             </div>
           </div>
+
+          {/* Pagination container */}
           <div className={styles.paginationDiv}>
             <div className={styles.paginationContDiv}>
               <ReactPaginate

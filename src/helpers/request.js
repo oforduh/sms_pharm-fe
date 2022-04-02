@@ -341,7 +341,6 @@ Request.prototype.createBranchData = async function (obj, token) {
     },
     body: JSON.stringify(obj),
   };
-
   try {
     const request = await fetch(this.path, config);
     const response = await request.json();
@@ -460,9 +459,38 @@ Request.prototype.deleteBranchData = async function (token) {
 Request.prototype.restoreBranchData = async function (token) {
   const config = {
     method: "GET",
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  try {
+    const request = await fetch(this.path, config);
+    const response = await request.json();
+    if (request.status !== 200) {
+      return {
+        status: false,
+        ...response,
+      };
+    }
+    return {
+      status: true,
+      ...response,
+    };
+  } catch (error) {
+    return {
+      status: false,
+      error,
+    };
+  }
+};
+
+Request.prototype.thrashSelectedBranchData = async function (token, obj) {
+  const config = {
+    method: "DELETE",
     headers: {
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
+    body: JSON.stringify(obj),
   };
 
   try {

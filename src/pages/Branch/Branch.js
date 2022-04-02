@@ -8,7 +8,11 @@ import styles from "./branch.module.scss";
 import * as BsIcons from "react-icons/bs";
 import * as AiIcons from "react-icons/ai";
 import Table, { TableRow, TableBody } from "../../components/Table/Table.js";
-import { handleGetbranch, handleThrashBranchData } from "./handleBranch";
+import {
+  handleGetbranch,
+  handleThrashBranchData,
+  thrashAllSelectedBranch,
+} from "./handleBranch";
 import { toast } from "react-toastify";
 import MLoader from "../../components/miniLoader/mLoader";
 import { UserObject } from "../../context/User";
@@ -193,16 +197,44 @@ const Branch = () => {
 
   // The modal to update a branch data end here
 
-  // sweet alert functionality starts here
-  const sweetAlertFunctionality = (item) => {
+  // sweet alert functionality to move to thrash starts here
+  const sweetAlertFunctionality2ThrashAll = () => {
     confirmAlert({
-      title: "Move to Thrash",
-      message: "Are you sure to do this.",
+      title: "Send all to Thrash",
+      message: "Are you sure to do this?",
       buttons: [
         {
           label: "Yes",
           onClick: () => {
-            console.log(item);
+            // This functionality thrash all selected branch
+            thrashAllSelectedBranch({
+              state: { id: selectedCheckboxes },
+              token,
+              refreshData,
+              currentPage,
+            });
+          },
+        },
+        {
+          label: "No",
+          onClick: () => {
+            return;
+          },
+        },
+      ],
+    });
+  };
+  // sweet alert functionality to move to thrash end here
+
+  // sweet alert functionality to move to thrash starts here
+  const sweetAlertFunctionality2move2Thrash = (item) => {
+    confirmAlert({
+      title: "Move to Thrash",
+      message: "Are you sure to do this?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
             selectBranchId2Thrash(item);
           },
         },
@@ -215,14 +247,14 @@ const Branch = () => {
       ],
     });
   };
-  // sweet alert functionality starts here
+  // sweet alert functionality to move to thrash end here
 
   // This functionality select the id of the modal to thrash
   const selectBranchId2Thrash = (item) => {
     thrashBranch(item._id);
   };
 
-  // for the checkbox
+  // functionality that handles the checkbox
   const [selectedCheckboxes, setselectedCheckboxes] = useState([]);
 
   // This functionality handles the checkboxes
@@ -351,7 +383,7 @@ const Branch = () => {
                   </div>
                 ) : (
                   <div className={styles.sortContentDiv}>
-                    <button>
+                    <button onClick={sweetAlertFunctionality2ThrashAll}>
                       {selectedCheckboxes.length > 1 ? "Thrash all" : "Thrash"}
                     </button>
                   </div>
@@ -442,7 +474,9 @@ const Branch = () => {
                                     },
                                     {
                                       onClick: () => {
-                                        sweetAlertFunctionality(item);
+                                        sweetAlertFunctionality2move2Thrash(
+                                          item
+                                        );
                                       },
                                       text: <AiIcons.AiFillDelete />,
                                       styles: {
