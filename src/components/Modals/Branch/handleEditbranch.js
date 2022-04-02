@@ -1,5 +1,5 @@
 import { Request } from "../../../helpers/request";
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 export const handleUpdateBranchData = async function ({
   e,
   state,
@@ -38,6 +38,8 @@ export const handleUpdateBranchData = async function ({
         type: "error",
         isLoading: false,
         autoClose: 2000,
+     
+
       });
     }
     if (updateBranchData.status) {
@@ -47,13 +49,10 @@ export const handleUpdateBranchData = async function ({
         type: "success",
         isLoading: false,
         autoClose: 2000,
+     
       });
       refreshData(currentPage);
       closeEditModal();
-
-      //   setTimeout(() => {
-      //     window.location.reload();
-      //   }, 2000);
     }
   } catch (error) {
     console.log(error);

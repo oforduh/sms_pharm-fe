@@ -2,6 +2,7 @@ import { cloneElement } from "react";
 
 import styles from "./table.module.scss";
 
+// tr component is inserted inside the tbody component
 export const TableRow = ({ rowData, rowStyles = {}, columnStyles }) => {
   return (
     <tr style={rowStyles}>
@@ -21,6 +22,7 @@ export const TableRow = ({ rowData, rowStyles = {}, columnStyles }) => {
   );
 };
 
+// tbody component is inserted inside the table component
 export const TableBody = ({ children, columnStyles }) => {
   return (
     <tbody>
@@ -29,6 +31,7 @@ export const TableBody = ({ children, columnStyles }) => {
   );
 };
 
+// Table component nest the tbody and the tbody nest the tr
 export default function Table({
   headerData,
   children,

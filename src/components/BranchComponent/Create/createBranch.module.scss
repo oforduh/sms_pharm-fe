@@ -19,17 +19,18 @@
       //   border: 2px solid red;
       display: flex;
       justify-content: center;
+      align-items: center;
       box-shadow: 0.5px 1px 10px #d0cfcf;
       background-color: var(--white);
       width: 70%;
-      height: 80%;
+      height: 60%;
+      // border: 2px solid red;
 
       form {
-        margin-top: 90px;
         width: 70%;
         label {
           display: block;
-          margin-bottom: 5px;
+          margin-bottom: 10px;
           font-weight: bolder;
         }
         input {
@@ -40,6 +41,8 @@
           padding: 10px;
           color: var(--primary);
           font-weight: bolder;
+          margin-bottom: 5px;
+          border: none;
         }
         .buttonContainer {
           margin-top: 20px;

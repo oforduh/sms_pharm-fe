@@ -43,7 +43,7 @@ const EditBranch = ({
                         setupdatingBranchData,
                         refreshData,
                         currentPage,
-                        closeEditModal
+                        
                       });
                     }}
                   >

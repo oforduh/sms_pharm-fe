@@ -8,7 +8,7 @@ import styles from "./branch.module.scss";
 import * as BsIcons from "react-icons/bs";
 import * as AiIcons from "react-icons/ai";
 import Table, { TableRow, TableBody } from "../../components/Table/Table.js";
-import { handleGetbranch } from "./handleBranch";
+import { handleGetbranch, handleThrashBranchData } from "./handleBranch";
 import { toast } from "react-toastify";
 import MLoader from "../../components/miniLoader/mLoader";
 import { UserObject } from "../../context/User";
@@ -23,7 +23,8 @@ import localizedFormat from "dayjs/plugin/localizedFormat";
 import TableLoader from "../../components/LoaderTable/TableLoader";
 import { Link } from "react-router-dom";
 import EditBranch from "../../components/Modals/Branch/EditBranch";
-import CreateBranch from "../../components/createBranch/CreateBranch";
+import CreateBranch from "../../components/BranchComponent/Create/CreateBranch";
+import Thrash from "../../components/BranchComponent/thrash/Thrash";
 dayjs.extend(localizedFormat);
 
 const Branch = () => {
@@ -42,7 +43,10 @@ const Branch = () => {
   const [errorMessage, setErrorMessage] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
   const [loadingPage, setloadingPage] = useState(false);
+
+  // set  Table loader on the table parent container
   const [loadingTable, setloadingTable] = useState(false);
+
   const [branchData, setBranchData] = useState(null);
   const [showTab, setShowTab] = useState({
     departmentRecord: true,
@@ -141,6 +145,16 @@ const Branch = () => {
     setInitialRender(false);
   }, []);
 
+  // This functionality thrash a branch
+  const thrashBranch = (thrashBranchId) => {
+    handleThrashBranchData({
+      token,
+      refreshData,
+      currentPage,
+      thrashBranchId,
+    });
+  };
+
   //  Functionality that hides and show tabs
   const toggleTab = (id) => {
     const newObj = { ...showTab };
@@ -160,7 +174,7 @@ const Branch = () => {
   };
 
   // The modal to update a branch data starts here
-  const modalRef = useRef();
+  const modalRef = useRef(); //was not used
   const [toggleModalContainer, settoggleModalContainer] = useState(false);
   const [selectedBranch, setselectedBranch] = useState("");
   const [branchId, setbranchId] = useState("");
@@ -172,7 +186,7 @@ const Branch = () => {
     setbranchId(item._id);
   };
 
-  // This functionality show the modal
+  // This functionality close the modal
   const closeEditModal = () => {
     settoggleModalContainer(!toggleModalContainer);
   };
@@ -180,14 +194,17 @@ const Branch = () => {
   // The modal to update a branch data end here
 
   // sweet alert functionality starts here
-  const sweetAlertFunctionality = () => {
+  const sweetAlertFunctionality = (item) => {
     confirmAlert({
-      title: "Confirm to submit",
+      title: "Move to Thrash",
       message: "Are you sure to do this.",
       buttons: [
         {
           label: "Yes",
-          onClick: () => alert("Click Yes"),
+          onClick: () => {
+            console.log(item);
+            selectBranchId2Thrash(item);
+          },
         },
         {
           label: "No",
@@ -199,6 +216,37 @@ const Branch = () => {
     });
   };
   // sweet alert functionality starts here
+
+  // This functionality select the id of the modal to thrash
+  const selectBranchId2Thrash = (item) => {
+    thrashBranch(item._id);
+  };
+
+  // for the checkbox
+  const [selectedCheckboxes, setselectedCheckboxes] = useState([]);
+
+  // This functionality handles the checkboxes
+  const handleSelectedCheckboxes = (event) => {
+    // check if the checkbox is already in the array then filter it out
+    if (selectedCheckboxes.includes(event.target.value)) {
+      // using array.splice method
+      const index = selectedCheckboxes.indexOf(event.target.value);
+      setselectedCheckboxes([
+        ...selectedCheckboxes.splice(0, index),
+        ...selectedCheckboxes.splice(index + 1),
+      ]);
+      return;
+
+      // using array.filter method
+      // const filteredSelectedCheckboxes = selectedCheckboxes.filter(
+      //   (item) => item !== event.target.value
+      // );
+      // setselectedCheckboxes(filteredSelectedCheckboxes);
+      // return;
+    }
+
+    setselectedCheckboxes([...selectedCheckboxes, event.target.value]);
+  };
 
   return (
     <div className={styles.branchParentDiv}>
@@ -272,34 +320,42 @@ const Branch = () => {
                 </button>
               </div>
             </div>
-            {!showTab.createDepartment && (
+            {showTab.departmentRecord && (
               <div div className={styles.sortParentDiv}>
-                <div className={styles.sortContentDiv}>
-                  <label>Show: </label>
-                  <select
-                    value={limit}
-                    onChange={(event) => {
-                      handleSelectedLimit4Pagination(event);
-                    }}
-                  >
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                  </select>
-                  <label className={styles.margin4SortByMostRecent}>
-                    Sort by:{" "}
-                  </label>
-                  <select
-                    value={sort}
-                    onChange={(event) => {
-                      handleSortByMostRecentData(event);
-                    }}
-                  >
-                    <option value="-1">Newest to oldest</option>
-                    <option value="1">Oldest to newest</option>
-                  </select>
-                </div>
+                {!selectedCheckboxes.length ? (
+                  <div className={styles.sortContentDiv}>
+                    <label>Show: </label>
+                    <select
+                      value={limit}
+                      onChange={(event) => {
+                        handleSelectedLimit4Pagination(event);
+                      }}
+                    >
+                      <option value="5">5</option>
+                      <option value="10">10</option>
+                      <option value="15">15</option>
+                      <option value="20">20</option>
+                    </select>
+                    <label className={styles.margin4SortByMostRecent}>
+                      Sort by:{" "}
+                    </label>
+                    <select
+                      value={sort}
+                      onChange={(event) => {
+                        handleSortByMostRecentData(event);
+                      }}
+                    >
+                      <option value="-1">Newest to oldest</option>
+                      <option value="1">Oldest to newest</option>
+                    </select>
+                  </div>
+                ) : (
+                  <div className={styles.sortContentDiv}>
+                    <button>
+                      {selectedCheckboxes.length > 1 ? "Thrash all" : "Thrash"}
+                    </button>
+                  </div>
+                )}
               </div>
             )}
             {showTab.departmentRecord && (
@@ -351,11 +407,16 @@ const Branch = () => {
                                         <input
                                           type="checkbox"
                                           id={item._id}
-                                          name={item._id}
-                                          value="Bike"
+                                          value={item._id}
+                                          style={{ cursor: "pointer" }}
+                                          onChange={(event) => {
+                                            handleSelectedCheckboxes(event);
+                                          }}
                                         />
                                       ),
-                                      styles: { width: "5%" },
+                                      styles: {
+                                        width: "5%",
+                                      },
                                     },
                                     {
                                       text: `${index + 1}`,
@@ -381,7 +442,7 @@ const Branch = () => {
                                     },
                                     {
                                       onClick: () => {
-                                        sweetAlertFunctionality();
+                                        sweetAlertFunctionality(item);
                                       },
                                       text: <AiIcons.AiFillDelete />,
                                       styles: {
@@ -442,7 +503,11 @@ const Branch = () => {
 
             {showTab.thrash && (
               <div>
-                <CreateBranch />
+                <Thrash
+                  token={token}
+                  branchrefreshData={refreshData}
+                  branchcurrentPage={currentPage}
+                />
               </div>
             )}
           </div>

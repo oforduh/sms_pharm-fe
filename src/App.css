@@ -10,8 +10,7 @@
   font-weight: bolder;
 }
 
-
-/* overwriting the pagination default styling */
+/* overwriting the pagination default styling start here */
 .page-link {
   color: var(--primary) !important;
   font-weight: bolder;
@@ -25,4 +24,25 @@
 
 .page-link:focus {
   box-shadow: none !important;
+}
+/* end here */
+
+/* overwriting sweet alert starts here */
+.react-confirm-alert-body > h1 {
+  font-size: 20px !important;
+  margin-bottom: 30px;
+}
+
+.react-confirm-alert-button-group button:nth-child(1) {
+  background-color: var(--primary);
+}
+
+.react-confirm-alert-button-group button:nth-child(2) {
+  background-color: red;
+}
+
+/* ends here */
+
+a {
+  color: var(--primary) !important  ;
 }

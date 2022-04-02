@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
-import { Request } from "../../helpers/request";
+import { Request } from "../../../helpers/request";
+
 export const handleCreateBranchData = async function ({
   e,
   state,
@@ -38,7 +39,7 @@ export const handleCreateBranchData = async function ({
     if (createBranchData.status) {
       setcreateBranchData(false);
       toast.update(id, {
-        render: "Update successful",
+        render: "Branch created successfully ",
         type: "success",
         isLoading: false,
         autoClose: 2000,

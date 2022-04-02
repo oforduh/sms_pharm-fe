@@ -6,6 +6,7 @@
   --danger: rgba(255, 0, 0, 0.683);
   --grey: #767676;
   --dashboardColor: #eeeeee;
+  --deletedColor: #ff675f;
 }
 * {
   margin: 0;

@@ -56,6 +56,7 @@
     display: flex;
     background-color: var(--dashboardColor);
     .branchPageDiv {
+      // border: 2px solid red;
       scroll-behavior: smooth;
       overflow-y: scroll;
       overflow-x: hidden;
@@ -172,6 +173,16 @@
               background-color: var(--primary);
               font-weight: bold;
             }
+          }
+          button {
+            border-radius: 5px;
+            padding: 5px;
+            background-color: var(--deletedColor);
+            color: var(--white);
+            border-color: none;
+            font-weight: bolder;
+            width: 120px;
+            border: none;
           }
         }
       }

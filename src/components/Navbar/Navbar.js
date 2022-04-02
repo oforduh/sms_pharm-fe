@@ -103,7 +103,7 @@ const Navbar = ({ sidebar, setSidebar }) => {
                       activeClassName={styles.navTextActive}
                       to={item.path}
                     >
-                      {item.icon}
+                      <span>{item.icon}</span>
                       <span>{item.title}</span>
                     </NavLink>
                   </li>

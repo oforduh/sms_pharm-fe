@@ -80,7 +80,8 @@
           display: grid;
           place-items: center;
           margin-bottom: 15px;
-          margin-top: 20px;
+          padding-left: 5px;
+          padding-top: 15px;
           .buttonContainer {
             text-align: start;
             display: flex;
@@ -88,9 +89,6 @@
             margin-bottom: 15px;
             width: 73%;
             height: 100%;
-            // &:hover {
-            //   background-color: #1a83ff;
-            // }
             button {
               background: none;
               color: #f5f5f5;
@@ -99,6 +97,20 @@
             .buttonIcon {
               margin-right: 20px;
               color: #f5f5f5;
+            }
+          }
+          &:hover {
+            background-color: var(--white);
+            .buttonContainer {
+              button {
+                background-color: var(--white);
+                color: var(--primary) !important;
+                font-weight: bolder;
+              }
+              .buttonIcon {
+                color: var(--primary) !important;
+                font-weight: bolder;
+              }
             }
           }
         }
@@ -138,20 +150,25 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 8px 0px 8px 16px;
+    padding: 8px 0px 8px 0;
     list-style: none;
     height: 60px;
     span {
       margin-left: 16px;
+      color: var(--white) !important;
     }
 
     &:hover {
-      background-color: #1a83ff;
+      background-color: var(--white);
+      span {
+        color: var(--primary) !important;
+        font-weight: bolder;
+      }
     }
 
     a {
       text-decoration: none;
-      color: #f5f5f5;
+      color: var(--white);
       font-size: 18px;
       display: flex;
       align-items: center;
